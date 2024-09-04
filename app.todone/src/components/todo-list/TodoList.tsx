@@ -9,8 +9,8 @@ const TodoList = ({ todoList }: TodoListProps) => {
         <>
             {todoList.map((todoItem, index) => {
                 return (
-                    <div style={{ paddingBottom: "5px" }}>
-                        <TodoItem key={index} name={todoItem.name} done={todoItem.done} deleteCallback={todoItem.deleteCallback} />
+                    <div key={index} style={{ paddingBottom: "5px" }}>
+                        <TodoItem name={todoItem.name} done={todoItem.done} deleteCallback={todoItem.deleteCallback} />
                     </div>)
             }
             )}

@@ -1,3 +1,4 @@
+import { Title1 } from "@fluentui/react-components";
 
 export interface HeaderProps {
     title: string,
@@ -6,8 +7,9 @@ export interface HeaderProps {
 
 const Header = ({ title, subtitle = "" }: HeaderProps) => {
     return (
-        <div style={{ alignSelf: 'center', textAlign: 'center' }}>
-            <h1><s>{title}</s> {subtitle}</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', alignSelf: 'center' }}>
+            <Title1><s>{title}</s></Title1>
+            <Title1>{subtitle}</Title1>
         </div>
     )
 };

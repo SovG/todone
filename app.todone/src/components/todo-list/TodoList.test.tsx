@@ -17,8 +17,6 @@ describe("TodoList", () => {
         const todoListCheckboxes = screen.queryAllByRole('checkbox');
         const todoListTrashButtons = screen.queryAllByRole('button');
 
-        screen.debug();
-
         expect(todoListCheckboxes.length).toBe(mockItems.length);
         expect(todoListTrashButtons.length).toBe(mockItems.length);
     })
