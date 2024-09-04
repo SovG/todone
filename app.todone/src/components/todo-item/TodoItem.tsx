@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox } from "@fluentui/react-components";
+import { Button, Card, Checkbox, tokens } from "@fluentui/react-components";
 import { BinRecycleRegular } from "@fluentui/react-icons";
 import { useState } from "react";
 
@@ -33,16 +33,14 @@ const TodoItem = ({ name, done = false, deleteCallback = () => { } }: TodoItemPr
 
     return (
         <>
-            <Card>
+            <Card style={{ backgroundColor: isDone ? tokens.colorNeutralBackground3 : tokens.colorNeutralBackground1 }} >
                 <div style={containerStyle}>
                     <Checkbox style={checkboxStyle} onChange={checkboxHandler} />
                     <h2 style={{
                         textDecoration: isDone ? 'line-through' : '',
                         flexGrow: 1
                     }}>{name}</h2>
-                    <Button style={binIconStyle} appearance="subtle" icon={<BinRecycleRegular fontSize={'1.5em'} />} onClick={deleteCallback} >
-                        {/* <BinRecycleRegular style={binIconStyle} fontSize={'1.5em'} /> */}
-                    </Button>
+                    <Button style={binIconStyle} appearance="subtle" icon={<BinRecycleRegular fontSize={'1.5em'} />} onClick={deleteCallback} />
                 </div>
             </Card>
         </>

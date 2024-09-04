@@ -1,7 +1,8 @@
 import { FluentProvider, webDarkTheme, webLightTheme } from "@fluentui/react-components";
 import React, { useEffect } from "react";
-import TodoItem from "./components/todo-item/TodoItem";
+import { TodoItemProps } from "./components/todo-item/TodoItem";
 import Header from "./components/header/Header";
+import TodoList from "./components/todo-list/TodoList";
 
 
 const layoutStyle: React.CSSProperties = {
@@ -16,19 +17,24 @@ const layoutStyle: React.CSSProperties = {
 }
 
 const App = () => {
-    const theme = webDarkTheme;
+    const theme = webLightTheme;
     useEffect(() => {
         const backgroundColor = theme.colorNeutralBackground1;
         document.body.style.backgroundColor = backgroundColor;
     });
+
+    const todoList: TodoItemProps[] = [
+        { name: "yee", deleteCallback: () => { console.log("here") } },
+        { name: "nee", deleteCallback: () => { console.log("here") } },
+        { name: "yerr", deleteCallback: () => { console.log("here") } },
+    ]
 
     return (
         <FluentProvider theme={theme}>
             <div style={layoutStyle}>
                 <div style={{ gridArea: "header" }}><Header title="TODO" subtitle="Done" /></div>
                 <div style={{ gridArea: "main" }}>
-                    <TodoItem name="yeee" deleteCallback={() => { console.log("here") }} />
-                    <TodoItem name="nee" deleteCallback={() => { console.log("here") }} />
+                    <TodoList todoList={todoList} />
                 </div>
             </div>
         </FluentProvider>
