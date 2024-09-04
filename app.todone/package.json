@@ -12,6 +12,8 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
+    "@fluentui/react-components": "^9.54.13",
+    "@fluentui/react-icons": "^2.0.256",
     "@testing-library/jest-dom": "^6.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
