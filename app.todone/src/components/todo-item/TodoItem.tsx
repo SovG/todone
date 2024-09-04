@@ -13,10 +13,6 @@ const containerStyle: React.CSSProperties = {
     flexDirection: 'row'
 }
 
-const checkboxStyle: React.CSSProperties = {
-    paddingInline: '10px',
-    alignSelf: 'center'
-}
 
 const binIconStyle: React.CSSProperties = {
     paddingInline: '10px',
@@ -35,7 +31,9 @@ const TodoItem = ({ name, done = false, deleteCallback = () => { } }: TodoItemPr
         <>
             <Card style={{ backgroundColor: isDone ? tokens.colorNeutralBackground3 : tokens.colorNeutralBackground1 }} >
                 <div style={containerStyle}>
-                    <Checkbox style={checkboxStyle} onChange={checkboxHandler} />
+                    <div style={{ paddingInline: '10px', alignSelf: 'center' }}>
+                        <Checkbox onChange={checkboxHandler} />
+                    </div>
                     <h2 style={{
                         textDecoration: isDone ? 'line-through' : '',
                         flexGrow: 1
