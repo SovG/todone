@@ -4,6 +4,7 @@ import { TodoItemProps } from "./components/todo-item/TodoItem";
 import Header from "./components/header/Header";
 import TodoList from "./components/todo-list/TodoList";
 import { DarkThemeRegular } from "@fluentui/react-icons";
+import TodoFormModal from "./components/todo-form-modal/TodoFormModal";
 
 
 const layoutStyle: React.CSSProperties = {
@@ -12,7 +13,7 @@ const layoutStyle: React.CSSProperties = {
     gridTemplateRows: '50px auto',
     rowGap: '15px',
     gridTemplateAreas: `
-                        '. header themeButton'
+                        'themeButton header addTodoButton'
                         '. main .'
                         `
 }
@@ -39,14 +40,17 @@ const App = () => {
     return (
         <FluentProvider theme={isLightTheme ? webLightTheme : webDarkTheme}>
             <div style={layoutStyle}>
-                <div style={{ gridArea: "header" }}>
-                    <Header title="TODO" subtitle="Done" />
-                </div>
                 <div style={{ gridArea: "themeButton", alignContent: 'center', justifySelf: 'center' }}>
                     <Button
                         icon={<DarkThemeRegular fontSize='2em' />}
                         onClick={themeChangeHandler}
                     />
+                </div>
+                <div style={{ gridArea: "header" }}>
+                    <Header title="TODO" subtitle="Done" />
+                </div>
+                <div style={{ gridArea: "addTodoButton", alignContent: 'center', justifySelf: 'center' }}>
+                    <TodoFormModal createTodo={(todo) => { console.log(todo) }} />
                 </div>
                 <div style={{ gridArea: "main" }}>
                     <TodoList todoList={todoList} />
