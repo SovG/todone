@@ -15,6 +15,7 @@
     "@fluentui/react-components": "^9.54.13",
     "@fluentui/react-icons": "^2.0.256",
     "@testing-library/jest-dom": "^6.5.0",
+    "dexie": "^4.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -28,6 +29,7 @@
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "fake-indexeddb": "^6.0.0",
     "globals": "^15.9.0",
     "jsdom": "^25.0.0",
     "typescript": "^5.5.3",
