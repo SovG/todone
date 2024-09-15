@@ -35,4 +35,8 @@ export class DB {
     public async deleteTodo(id: number): Promise<void> {
         return this.db.todo.delete(id);
     }
+
+    public getDbObject() {
+        return this.db;
+    }
 }
