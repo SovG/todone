@@ -1,8 +1,8 @@
 import { Button, FluentProvider, webDarkTheme, webLightTheme } from "@fluentui/react-components";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TodoItemProps } from "./components/todo-item/TodoItem";
 import Header from "./components/header/Header";
-import TodoList, { TodoListProps } from "./components/todo-list/TodoList";
+import TodoList from "./components/todo-list/TodoList";
 import { DarkThemeRegular } from "@fluentui/react-icons";
 import TodoFormModal from "./components/todo-form-modal/TodoFormModal";
 import { DB, Todo } from "./utils/db";
@@ -21,19 +21,30 @@ const layoutStyle: React.CSSProperties = {
 }
 
 const App = () => {
-    const [isLightTheme, setLightTheme] = useState(true);
+    const [theme, setTheme] = useState(() => {
+        const theme = localStorage.getItem('currTheme')
+        console.log(theme);
+        if (theme == undefined) {
+            return 'light';
+        }
+        return theme;
+    });
     const [db] = useState(new DB());
 
     const todoList = useLiveQuery(() => db.getDbObject().todo.toArray());
 
     useEffect(() => {
-        const theme = isLightTheme ? webLightTheme : webDarkTheme;
-        const backgroundColor = theme.colorNeutralBackground1;
+        const currTheme = theme === 'light' ? webLightTheme : webDarkTheme;
+        const backgroundColor = currTheme.colorNeutralBackground1;
         document.body.style.backgroundColor = backgroundColor;
-    }, [isLightTheme]);
+    }, [theme]);
 
     const themeChangeHandler = () => {
-        setLightTheme(lightTheme => !lightTheme)
+        setTheme((prevTheme) => {
+            const theme = prevTheme === 'light' ? "dark" : "light";
+            localStorage.setItem('currTheme', theme);
+            return theme;
+        });
     }
 
     const addTodo = (todo: string) => {
@@ -59,7 +70,7 @@ const App = () => {
 
 
     return (
-        <FluentProvider theme={isLightTheme ? webLightTheme : webDarkTheme}>
+        <FluentProvider theme={theme === 'light' ? webLightTheme : webDarkTheme}>
             <div style={layoutStyle}>
                 <div style={{ gridArea: "themeButton", alignContent: 'center', justifySelf: 'center' }}>
                     <Button
