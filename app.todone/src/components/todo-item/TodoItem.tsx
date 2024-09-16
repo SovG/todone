@@ -6,6 +6,7 @@ export interface TodoItemProps {
     name: string,
     done?: boolean,
     deleteCallback?: () => void
+    statusUpdateCallback?: (status: boolean) => void
 }
 
 const containerStyle: React.CSSProperties = {
@@ -19,12 +20,15 @@ const binIconStyle: React.CSSProperties = {
     alignSelf: 'center',
 }
 
-const TodoItem = ({ name, done = false, deleteCallback = () => { } }: TodoItemProps) => {
+const TodoItem = ({ name, done = false, deleteCallback = () => { }, statusUpdateCallback = () => { } }: TodoItemProps) => {
 
     const [isDone, setDone] = useState(done);
 
     const checkboxHandler = () => {
-        setDone(isDone => !isDone);
+        setDone(isDone => {
+            statusUpdateCallback(!isDone);
+            return !isDone;
+        })
     }
 
     return (
@@ -32,7 +36,7 @@ const TodoItem = ({ name, done = false, deleteCallback = () => { } }: TodoItemPr
             <Card style={{ backgroundColor: isDone ? tokens.colorNeutralBackground3 : tokens.colorNeutralBackground1 }} >
                 <div style={containerStyle}>
                     <div style={{ paddingInline: '10px', alignSelf: 'center' }}>
-                        <Checkbox onChange={checkboxHandler} />
+                        <Checkbox onChange={checkboxHandler} defaultChecked={isDone} />
                     </div>
                     <h2 style={{
                         textDecoration: isDone ? 'line-through' : '',

@@ -43,4 +43,18 @@ describe('db', () => {
         expect(res).to.toHaveLength(1);
         expect(res?.find(x => x.id == todoTwo?.id)).toBeTruthy();
     });
+
+    it('should update the status of done in database', async () => {
+        const sit = new DB();
+
+        const todoOne = await sit.addTodo("Bob");
+
+        await sit.updateTodoStatus(todoOne?.id, true);
+
+        const res = await sit.getAllTodos();
+
+        expect(res).to.toHaveLength(1);
+        expect(res[0].id).toBeTruthy();
+        expect(res[0].name).toBe("Bob");
+    });
 })

@@ -61,9 +61,13 @@ const App = () => {
                     done: item.status,
                     deleteCallback: () => {
                         db.deleteTodo(item.id);
+                    },
+                    statusUpdateCallback: (status: boolean) => {
+                        console.log('main: ' + status);
+                        db.updateTodoStatus(item.id, status);
                     }
                 }
-            })
+            });
             return <TodoList todoList={todoListProps} />;
         }
     }

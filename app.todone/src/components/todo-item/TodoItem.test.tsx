@@ -48,4 +48,26 @@ describe('TodoItem', () => {
 
         expect(mockCallback).toHaveBeenCalledTimes(1);
     })
+
+    it('should get the state of the checkbox item from props and strike out text if true', () => {
+        render(<TodoItem name="Item Name" done={true} />);
+
+        const itemText = screen.queryByRole('heading');
+        expect(itemText?.style.textDecoration).toBe('line-through');
+    })
+
+    it('should trigger status update callback when checkbox is clicked', () => {
+        const mockStatusCallback = vi.fn()
+
+        render(<TodoItem name="Item Name" done={true} statusUpdateCallback={mockStatusCallback} />);
+
+        const checkbox = screen.queryByRole('checkbox');
+
+        act(() => {
+            checkbox?.click();
+        });
+
+        expect(mockStatusCallback).toHaveBeenCalledTimes(1);
+
+    })
 })

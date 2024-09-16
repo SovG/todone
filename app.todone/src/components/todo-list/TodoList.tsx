@@ -10,7 +10,12 @@ const TodoList = ({ todoList }: TodoListProps) => {
             {todoList.map((todoItem, index) => {
                 return (
                     <div key={index} style={{ paddingBottom: "5px" }}>
-                        <TodoItem name={todoItem.name} done={todoItem.done} deleteCallback={todoItem.deleteCallback} />
+                        <TodoItem
+                            name={todoItem.name}
+                            done={todoItem.done}
+                            deleteCallback={todoItem.deleteCallback}
+                            statusUpdateCallback={todoItem.statusUpdateCallback}
+                        />
                     </div>)
             }
             )}

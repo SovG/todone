@@ -36,6 +36,10 @@ export class DB {
         return this.db.todo.delete(id);
     }
 
+    public async updateTodoStatus(id: number, status: boolean): Promise<void> {
+        this.db.todo.update(id, {status: status});
+    }
+
     public getDbObject() {
         return this.db;
     }
